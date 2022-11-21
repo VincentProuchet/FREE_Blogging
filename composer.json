@@ -1,0 +1,17 @@
+{
+	"keywords" : [
+		"php;"
+	],
+	"autoload" : {
+		"psr-4" : {
+			"Prouchet Vincent\\PagePerso_Free_blogging_BE\\" : "src"
+		}
+	},
+	"name" : "Prouchet vincent/PagePerso_Free_blogging_BE",
+	"type" : "php",
+	"description" : "Back-end php compatible avec la version php disponible sur les pages persos de free",
+	"require" : {
+		"php" : ">=5.6"
+	},
+	"minimum-stability" : "alpha"
+}
