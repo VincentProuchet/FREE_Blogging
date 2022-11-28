@@ -54,6 +54,7 @@ $main->set('timeformat','r');
 // should serve the frontend application
 $main->route('GET /',function() {
     echo phpinfo();
+    echo " initialisation success ! ";
 });
 
 
