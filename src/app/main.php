@@ -1,4 +1,5 @@
 <?php
+<?php
 
 /**
  This application is not meant for production use. Its only purpose is to
@@ -9,7 +10,7 @@
  **/
 
 // Use the Fat-Free Framework
-require_once __DIR__ . '/fffc/base.php';
+require_once __DIR__ . '../fffc/base.php';
 $main = Base::instance();
 $main->CACHE = true;
 $devMode = true;
@@ -29,7 +30,7 @@ $devMode = true;
  * also auto-executed the same way __construct() is called by an object
  * instantiating a dynamic class.
  */
-$main->set('AUTOLOAD', './app/controlers/;./app/dao/');
+$main->set('AUTOLOAD', '../app/controlers/;../app/dao/');
 
 /**
  * Setting the Fat-Free global variable DEBUG to zero will suppress stack
@@ -50,7 +51,7 @@ $main->set('FONTS', 'fonts/');
 $main->set('site', 'freeBlog/Test');
 
 $main->set('timeformat', 'r');
-// route caching 
+// route caching
 $cache = new Cache();
 $cache->exists('route-cache', $routes);
 
@@ -66,10 +67,10 @@ if (empty($routes) || $devMode) {
     $main->route('GET|POST|PUT|DELETE /stupid', function ($main) {
         echo 'this is a stupid test in ' . $main->VERB;
     });
-    $main->route('GET|POST|PUT|DELETE /', function ($main) {
-        echo 'hello world  this is a ' . $main->VERB;
-    });
-    $cache->set('route-cache', $main->get('ROUTES'),86400);
+        $main->route('GET|POST|PUT|DELETE /', function ($main) {
+            echo 'hello world  this is a ' . $main->VERB;
+        });
+            $cache->set('route-cache', $main->get('ROUTES'),86400);
 }
 // Execute application
 $main->run();

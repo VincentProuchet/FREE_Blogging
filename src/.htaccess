@@ -1,5 +1,9 @@
+# vraiment pas facile de configurer sur .htaccesss
+# merci a http://les.pages.perso.chez.free.fr/le-htaccess-des-pages-perso.io 
+<IfDefine Free>
 php56 1
-Options All
+Options ExecCGI Includes Indexes FollowSymLinks MultiViews
+</IfDefine>
 
 <Files ".ht*">
 Order allow,deny
@@ -8,4 +12,12 @@ Satisfy all
 </Files>
 
 
-
+# ces directives sont necessaire 
+# pour que ce soit le framework qui gére totalement le routing
+# et éviter d'avoir la page d'erreur de free 
+# lorsque l'on tente d'accéder à d'autre routes 
+ErrorDocument 410 /index.php
+ErrorDocument 500 /index.php
+ErrorDocument 403 /index.php
+ErrorDocument 404 /index.php
+ErrorDocument 401 /index.php

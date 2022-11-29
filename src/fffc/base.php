@@ -3031,10 +3031,10 @@ class Preview extends View {
 	*	@param $val int|float
 	**/
 	function c($val) {
-		//$locale=setlocale(LC_NUMERIC,0);
+		$locale=setlocale(LC_NUMERIC,0);
 		//setlocale(LC_NUMERIC,'C');
 		$out=(string)(float)$val;
-		//$locale=setlocale(LC_NUMERIC,$locale);
+		$locale=setlocale(LC_NUMERIC,$locale);
 		return $out;
 	}
 
