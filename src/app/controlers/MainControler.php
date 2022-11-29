@@ -1,6 +1,6 @@
 <?php
 
-class MainControler
+class MainControler implements RestBase
 {
 
     public function get(\Base $sfw, array $args = [])
@@ -47,6 +47,8 @@ class MainControler
     public function test(\Base $sfw, array $args = [])
     {
         echo " main controler success ! $sfw->VERB ";
+        echo phpinfo();
+        
     }
 }
 
