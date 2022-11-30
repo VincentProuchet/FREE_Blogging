@@ -5,34 +5,11 @@ class MainControler implements RestBase
 
     public function get(\Base $sfw, array $args = [])
     {
-        if (! function_exists('apache_get_modules')) {
-            ?>
-<html>
-<body>
-	<p>apache_get_modules function not availabe</p>
-	<p> hello world this is the main page of the blogging tool </p>
-	<div>
-	
-    <?php
-        
-            phpinfo();
-            ?>
-    </div>
-</body>
-</html>
-<?php
-            exit();
-        }
-        $res = 'Module Unavailable';
-        if (in_array('mod_rewrite', apache_get_modules()))
-            $res = 'Module Available';
         ?>
 <html>
-<head>
-<title>A mod_rewrite availability check !</title>
-</head>
 <body>
-	<p><?php echo apache_get_version(),"</p><p>mod_rewrite $res"; ?></p>
+	<p>hello world this is the main page of the blogging tool</p>
+	<div></div>
 </body>
 </html>
 <?php
@@ -49,10 +26,32 @@ class MainControler implements RestBase
 
     public function test(\Base $sfw, array $args = [])
     {
-        echo " main controler success ! $sfw->VERB ";
-        echo phpinfo();
-        
+        $res = 'Module non disponible';
+        ?>
+<html>
+<body>
+	<p>test MainControler -> succées <?php $sfw->VERB;?></p>
+	<?php
+        if (! function_exists('apache_get_modules')) {
+            ?>
+          <p>apache_get_modules faonction non disponible</p>
+     <?php
+        } else {
+            if (in_array('mod_rewrite', apache_get_modules())) {
+                $res = 'Module disponible';
+                echo "<p>" . apache_get_version() . "</p><p>mod_rewrite $res </p> ";
+            }
+        }
+     ?>
+	<p> hello world ! </p>
+	<p> ceci est la page d'information du service </p>
+	<div>	
+	<?php
+	   phpinfo();
+    ?>
+    </div>
+</body>
+</html>
+<?php
     }
 }
-
-
