@@ -9,68 +9,6 @@
  */
 class Main
 {
-
-    /**
-     * dossier des classes pour l'autoload
-     * 'path/to/autoloaded/classes/'
-     * ou
-     * 'folder1/,folder2/,main/sub/'
-     * est relatif à l'inclusion du framework fff
-     * ici au dossier de l'index.php
-     *
-     * @var string
-     */
-    private $file_4_Class = 'app/controlers/;app/dao/';
-
-    /**
-     * dossier des fonts
-     * utilisé par le captcha
-     * toujours relif au require du framework
-     *
-     * @var string
-     */
-    private $file_4_fonts = '/fonts/';
-
-    /**
-     * site title
-     *
-     * @var string
-     */
-    private $site_value = 'freeBlog/Test';
-
-    /**
-     * time format
-     *
-     * @var string
-     */
-    private $timeFormat = 'r';
-
-    /**
-     * allez vous utiliser le cache pour vos variables
-     * spoiler alert ! la réponse est oui
-     *
-     * @var boolean
-     */
-    private $useCache = true;
-
-    /**
-     * dev mode activation
-     *
-     * @var boolean
-     */
-    private $devMode = true;
-
-    /**
-     * Setting the Fat-Free global variable DEBUG to zero will suppress stack
-     * trace in HTML error page.
-     * If you're still debugging your application,
-     * you might want to give it a value from 1 to 3. Adjust to your desired
-     * level of verbosity. The stack trace can help a lot in program testing.
-     *
-     * @var integer
-     */
-    private $debugLevel = 3;
-
     /**
      * fat-free framework instance
      *
@@ -98,8 +36,17 @@ class Main
     {
         // Use the Fat-Free Framework
         $this->main = Base::instance();
-        $this->setBaseValues();
-        $this->setDebug();
+        if(!file_exists(__DIR__.'/../app/setup.ini')){
+            die('missing config file');
+        }
+      
+        $this->main->config(__DIR__.'/../app/setup.ini');
+        
+        
+        
+        //$this->setBaseValues();
+        
+        //$this->setDebug();
         $this->caching();
         // notez la présence du devmode
         // qui force le recaching systématique
@@ -120,13 +67,19 @@ class Main
      */
     private function setBaseValues()
     {
+        
         $this->main->CACHE = $this->useCache;
-        $this->main->set('AUTOLOAD', $this->file_4_Class);
-        // Path to our CAPTCHA font file
-        $this->main->set('FONTS', $this->file_4_fonts);
         // Define application globals
-        $this->main->set('site', $this->site_value);
-        $this->main->set('timeformat', $this->timeFormat);
+        $this->main->mset(
+            array(
+                'AUTOLOAD'=> $this->file_4_Class
+                // Path to our CAPTCHA font file
+                ,'FONTS'=> $this->file_4_fonts
+                ,'site'=> $this->site_value
+                ,'timeformat'=> $this->timeFormat
+            )
+            );
+        
     }
 
     /**
@@ -147,7 +100,7 @@ class Main
      */
     private function caching()
     {
-        if ($this->useCache) {
+        if ($this->main->CACHE) {
             // route caching
             $this->cache = new Cache();
             $this->cache->exists('route-cache', $this->routes);
@@ -159,17 +112,21 @@ class Main
      */
     private function setRoutes()
     {
+        if(!file_exists(__DIR__.'/../app/routes.ini')){
+            die('missing routes file');
+        }
+        $this->main->config(__DIR__.'/../app/routes.ini');
+        
+        if(!file_exists(__DIR__.'/../app/maps.ini')){
+            die('missing maps file');
+        }
+        $this->main->config(__DIR__.'/../app/maps.ini');
+        
         // main route
         // should serve the frontend application
         // will do hello world for now
-        $this->main->route('GET|POST|PUT|DELETE /', function () {
-            echo 'hello world  this is a ' . $this->main->VERB;
-        });
         $this->main->map('/test', 'MainControler');
-        $this->main->route('GET /patate', 'MainControler->test');
-        $this->main->route('GET|POST|PUT|DELETE /stupid', function () {
-            echo 'this is a stupid test in ' . $this->main->VERB;
-        });
+        
     }
 }
-$blog = new Main();
+return new Main();

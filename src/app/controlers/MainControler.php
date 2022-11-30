@@ -10,8 +10,11 @@ class MainControler implements RestBase
 <html>
 <body>
 	<p>apache_get_modules function not availabe</p>
+	<p> hello world this is the main page of the blogging tool </p>
 	<div>
+	
     <?php
+        
             phpinfo();
             ?>
     </div>
