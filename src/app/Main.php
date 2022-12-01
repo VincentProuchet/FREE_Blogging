@@ -7,7 +7,7 @@
  * @author Vincent
  *
  */
-class Main
+class Main extends Prefab
 {
 
     /**
@@ -54,14 +54,14 @@ class Main
     /**
      * constructor
      */
-    public function __construct()
+    protected function __construct()
     {
         // Use the Fat-Free Framework
         $this->main = Base::instance();
         // vérifie l'existence du fichier
         if (! file_exists($this->configFiles . $this->configFileName)) {
             // ou tue l'application
-            die('fichier '.$this->configFileName.' manquant dans le dossier : '.$this->configFiles );
+            die($this->fileNotFound($this->configFileName,$this->configFiles) );
         }
         // chargement fichier configuration
         $this->main->config($this->configFiles . $this->configFileName);
@@ -139,14 +139,29 @@ class Main
     private function setRoutes()
     {
         if (! file_exists($this->configFiles . $this->main->routesFile)) {
-            die('fichier '.$this->main->routesFile.' manquant dans le dossier : '.$this->configFiles );
+            die($this->fileNotFound($this->main->routesFile,$this->configFiles));
         }
         if (! file_exists($this->configFiles . $this->main->mapsFile)) {
-            die('fichier '.$this->main->mapsFile.' manquant dans le dossier : '.$this->configFiles );
+            die($this->fileNotFound($this->main->mapsFile,$this->configFiles));
+        }
+        if (! file_exists($this->configFiles . $this->main->redirectFile)) {
+            die($this->fileNotFound($this->main->redirectFile,$this->configFiles));
         }
         // main route
         $this->main->config($this->configFiles . $this->main->routesFile);
         $this->main->config($this->configFiles . $this->main->mapsFile);
+        $this->main->config($this->configFiles . $this->main->redirectFile);
+    }
+    /**
+     * cette fonction met en forme un message d'erreur
+     *  utilisé lorsque qu'n fichier n'est pas trouvé
+     * dans le dossier de configuration
+     * @param string $file
+     * @param string $repository
+     * @return string
+     */
+    private function fileNotFound($file,$repository){
+        return 'fichier '.$file.' manquant dans le dossier : '.$repository ;
     }
 }
-return new Main();
+return Main::instance();
