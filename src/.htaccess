@@ -5,6 +5,7 @@ php56 1
 Options ExecCGI Includes Indexes FollowSymLinks MultiViews
 </IfDefine>
 
+
 <Files ".ht*">
 Order allow,deny
 Deny from all

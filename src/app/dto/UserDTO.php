@@ -1,31 +1,62 @@
 <?php
 
 
-class UserDTO
+class UserDTO implements DTO
 {
     /**
      *
      * @var integer
      */
     public $id = 0;
-    
+    /**
+     * 
+     * @var string
+     */
     public $name = "";
-    
+    /**
+     * 
+     * @var string
+     */
     public $firstName = "";
-    
-    public $dateOfBirth = "1900/01/01";
-    
-    public $email = "example@example.fr";
-    
-    public function __construct($user){
+    /**
+     * 
+     * @var string
+     */
+    public $dateOfBirth = "";
+    /**
+     * 
+     * @var string
+     */
+    public $email = "";
+    /**
+     * 
+     * @var string
+     */
+    public $username = '';
+    /**
+     * 
+     * @var string
+     */
+    public $password = '';
+    /**
+     * 
+     * @var string
+     */
+    public $repassword = '';
+   /**
+    * créer une instance du DTO depuis un User
+    * @param User $user
+    * @return UserDTO
+    */
+    public static function make(User $user){
         
-        if(get_class($user)== get_class(new User())){
-           $this->id=  $user->getId();
-           $this->name = $user->getName();
-           $this->firstName = $user->getFirstName();
-           $this->dateOfBirth = $user->getDateOfBirth();
-           $this->email = $user->getEmail();
-        }
+        $new = new UserDTO();
+        $new->id=  $user->getId();
+        $new->name = $user->getName();
+        $new->firstName = $user->getFirstName();
+        $new->dateOfBirth = $user->getDateOfBirth();
+        $new->email = $user->getEmail();
+        return $new;        
     }
 }
 

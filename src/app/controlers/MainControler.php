@@ -1,11 +1,16 @@
 <?php
 
-class MainControler extends RestControler implements RestBase
+/**
+ * 
+ * @author Vincent
+ *
+ */
+class MainControler implements RestBase
 {
 
     public function get(\Base $sfw, array $args = [])
     {
-        header(RestControler::CONTENT_TYPE.RestControler::HTML);
+        // header(RestControler::CONTENT_TYPE.RestControler::HTML);
         ?>
 <html>
 <body>
@@ -18,8 +23,7 @@ class MainControler extends RestControler implements RestBase
 
     public function post(\Base $sfw, array $args = [])
     {
-        
-        echo json_encode(new UserDTO(new User()));
+        echo json_encode(UserDTO::make(new User()));
     }
 
     public function put(\Base $sfw, array $args = [])
@@ -51,7 +55,7 @@ class MainControler extends RestControler implements RestBase
 
     public function test(\Base $sfw, array $args = [])
     {
-        header(RestControler::CONTENT_TYPE.RestControler::HTML);
+        // header(RestControler::CONTENT_TYPE.RestControler::HTML);
         $res = 'Module non disponible';
         ?>
 <html>
