@@ -14,5 +14,5 @@ fonts/
 *.phar
 .buildpath
 
-
-
+*.bkp
+*.dtmp

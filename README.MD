@@ -2,7 +2,7 @@
 FREE BLOGGING
 
 est un back-end en REST pour un blog.
-compatible avec l'hébergement des pages perso de l'opérateur français [![FREE](https://www.free.fr/freebox/)](https://www.free.fr/freebox/assets/images/logo.png)
+compatible avec l'hébergement des pages perso de l'opérateur français [![FREE](https://www.free.fr/freebox/assets/images/logo.png)](https://www.free.fr)
 
 qui en plus de n'offrir que du php en 5.6 ( c'est gratuit donc on peux pas vraiment se plaindre)
 bloque les fonction php suivantes : 
@@ -61,3 +61,5 @@ https://fatfreeframework.com/3.8/home
 la chaine youtube de n0nag0n est une resource d'information formidable :
 https://www.youtube.com/@n0nag0n80
 avec quelques modification pour qu'il ne tente pas d'utiliser les fonction prohibées par l'hébergeur
+Merci a anvarazizov pour son aide indirecte sur les headers de l'api
+https://gist.github.com/anvarazizov/769f11871a9312e8cea8 
