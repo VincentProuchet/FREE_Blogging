@@ -1,7 +1,7 @@
 <?php
 
 
-class UserDTO implements DTO
+class UserDTO 
 {
     /**
      *
@@ -32,17 +32,17 @@ class UserDTO implements DTO
      * 
      * @var string
      */
-    public $username = '';
+    public $username = "";
     /**
      * 
      * @var string
      */
-    public $password = '';
+    public $password = "";
     /**
      * 
      * @var string
      */
-    public $repassword = '';
+    public $repassword = "";
    /**
     * créer une instance du DTO depuis un User
     * @param User $user

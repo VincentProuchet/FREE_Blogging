@@ -5,7 +5,7 @@
  * @author Vincent
  *
  */
-class MainControler implements RestBase
+class MainControler extends RestControler implements RestBase
 {
 
     public function get(\Base $sfw, array $args = [])
@@ -23,31 +23,17 @@ class MainControler implements RestBase
 
     public function post(\Base $sfw, array $args = [])
     {
-        echo json_encode(UserDTO::make(new User()));
+        $response = json_encode(UserDTO::make(new User()));
+        
+      $this->sendJson($response);
     }
 
     public function put(\Base $sfw, array $args = [])
     {
-        $options = [];
-        $params = [
-            'name' => 'John',
-            'surname' => 'Doe',
-            'age' => 36
-        ];
-        $defaults = array(
-            CURLOPT_URL => 'http://myremoteservice/',
-            CURLOPT_HTTPHEADER => array(
-                "Content-type: 'application/json;charset=UTF-8'",
-                "Accept: application/json",
-                "Cache-Control: no-cache",
-                "Pragma: no-cache"
-            ),
-            CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => $params
-        );
-        $ch = curl_init();
-        curl_setopt_array($ch, ($options + $defaults));
-        echo json_encode($this);
+        $response = json_encode(UserDTO::make(new User()));
+       
+        $this->sendJson($response);
+        
     }
 
     public function delete(\Base $sfw, array $args = [])
@@ -84,4 +70,9 @@ class MainControler implements RestBase
 </html>
 <?php
     }
+    public function patch(Base $sfw, array $args = [])
+    {
+        
+    }
+
 }

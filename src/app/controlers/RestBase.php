@@ -31,9 +31,16 @@ interface RestBase
     function put(\Base $sfw, array $args = []);
 
     /**
+     * 
+     * @param \Base $sfw
+     * @param array $args
+     */
+    function patch (\Base $sfw, array $args = []);
+    /**
      *
      * @param \Base $sfw
      * @param array $args
      */
     function delete(\Base $sfw, array $args = []);
+    
 }
