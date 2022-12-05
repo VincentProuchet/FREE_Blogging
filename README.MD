@@ -7,8 +7,10 @@ compatible avec l'hébergement des pages perso de l'opérateur français [FREE](
 ### Contraintes
 * l'envirronnement server n'eset pas modifiable
 * php 5.6 
-<details><summary> les fonctions php suivantes sont bloquées : </summary>
-|  -   |  -     |-|-|
+<details>
+ <summary> les fonctions php suivantes sont bloquées : </summary>
+ 
+| - | - | - | - |
 | :---: | :---: | :---: | :---: |
 | chown            | chmod                | get_current_user | php_uname  |
 | putenv           | set_time_limit       | getmyuid         | getmypid |
@@ -21,7 +23,7 @@ compatible avec l'hébergement des pages perso de l'opérateur français [FREE](
 | disk_total_space | disk_free_space      | rmdir            | openlog |
 | closelog         | syslog               | flock            | socket_create_listen |
 | socket_accept    | socket_listen        | symlink          | setlocale |
-| imagerotate      | -                     |-|-|
+| imagerotate      | -                     | - | - |
 
 [Source](https://assistance.free.fr/articles/pages-perso-php-et-fonctions-desactivees-chez-free-653)
 </details>
@@ -41,16 +43,16 @@ ce serait moins amussant si il n'y avait pas un peu de challenge.
 pour compenser l'environement nous offre nombres de variables prédéfinies par le serveur.
 
 
-Notre peutit outil de blogging 
+Notre petit outil de blogging 
 Utiliseras le framework fast free framework que vous pouvez trouver ici :
- https://github.com/f3-factory/fatfree-core
+ https://github.com/f3-factory/fatfree-core <br />
 le site du framework est ici :
-https://fatfreeframework.com/3.8/home.
+https://fatfreeframework.com/3.8/home <br />
 
 la chaine youtube de n0nag0n est une resource d'information formidable :
-https://www.youtube.com/@n0nag0n80
+https://www.youtube.com/@n0nag0n80 <br />
 
-J'ai dût fire quelques modifications au base.php pour qu'il ne tente pas d'utiliser des fonctions prohibées par l'hébergeur
+J'ai dû faire quelques modifications au base.php pour qu'il n'utilise pas les fonctions prohibées par l'hébergeur.<br />
 
 Merci a anvarazizov pour son aide indirecte sur les headers
 https://gist.github.com/anvarazizov/769f11871a9312e8cea8 
