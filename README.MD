@@ -6,12 +6,19 @@ compatible avec l'hébergement des pages perso de l'opérateur français [FREE](
 
 qui en plus de n'offrir que du php en 5.6 ( c'est gratuit donc on peux pas vraiment se plaindre)
 bloque les fonction php suivantes : 
+|:---:|:---:|:---:|:---:|
 | chown | chmod | get_current_user | php_uname  |
 | putenv | set_time_limit | getmyuid | getmypid |
 | dl | ini_alter | ini_restore | realpath |
 | tmpfile | link | shell_exec | proc_open |
 | chroot | sleep | usleep | umask |
-| set_include_path | restore_include_path | |||
+| set_include_path | restore_include_path |ini_set |exec |
+|passthru |system |popen |pclose |
+|leak |mysql_list_dbs |listen |chgrp |
+|disk_total_space |disk_free_space |rmdir |openlog |
+|closelog |syslog |flock |socket_create_listen |
+|socket_accept |socket_listen |symlink |setlocale |
+|imagerotate |-|-|-|
 
 [Source](https://assistance.free.fr/articles/pages-perso-php-et-fonctions-desactivees-chez-free-653)
 
