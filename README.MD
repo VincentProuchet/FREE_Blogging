@@ -1,4 +1,4 @@
-#FREE BLOGGING
+# FREE BLOGGING
 est un back-end en REST pour un blog.
 compatible avec l'hébergement des pages perso de l'opérateur français [FREE](https://www.free.fr)
 
@@ -40,7 +40,7 @@ Mais le esrvice de gestion des pages persos de FREE ne répond pas au demandes d
 
 
 
-###L'environement 
+### L'environement 
 - le service de FREE nous offre nombres de variables prédéfinies par le serveur, que je n'ai pas encore réussit à configurer dans mon serveur de test.
 - une configuration proche est disponible dans le fichier free_blogging.ini.
 - composer n'est pas utilisé, car il demande une version de php plus récente que celle disponible pour ce projet.
