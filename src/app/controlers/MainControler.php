@@ -5,39 +5,8 @@
  * @author Vincent
  *
  */
-class MainControler extends RestControler implements RestBase
+class MainControler extends RestControler
 {
-
-    public function get(\Base $sfw, array $args = [])
-    {
-        // header(RestControler::CONTENT_TYPE.RestControler::HTML);
-        ?>
-<html>
-<body>
-	<p>hello world this is the main page of the blogging tool</p>
-	<div></div>
-</body>
-</html>
-<?php
-    }
-
-    public function post(\Base $sfw, array $args = [])
-    {
-        $response = json_encode(UserDTO::make(new User()));
-        
-      $this->sendJson($response);
-    }
-
-    public function put(\Base $sfw, array $args = [])
-    {
-        $response = json_encode(UserDTO::make(new User()));
-       
-        $this->sendJson($response);
-        
-    }
-
-    public function delete(\Base $sfw, array $args = [])
-    {}
 
     public function test(\Base $sfw, array $args = [])
     {
@@ -70,9 +39,9 @@ class MainControler extends RestControler implements RestBase
 </html>
 <?php
     }
-    public function patch(Base $sfw, array $args = [])
-    {
-        
-    }
 
+    public function home(Base $sfw, array $args = [])
+    {        
+        echo \Template::instance()->render('acceuil.htm');
+    }
 }

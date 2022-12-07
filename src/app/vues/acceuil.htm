@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<!-- Bootstrap 5 -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+<!-- FIN bootstrap 5 -->
+</head>
+<body>
+	<div class="container">
+		<h1>Hello World !</h1>
+
+		<h2>Qui est-tu ?</h2>
+		<div class="container m-2">Vincent Prouchet. Je suis un ancien technicien de
+			maintenance reconvertit en programmeur par l'obtention d'un BTS SIO
+			Comme ça ne suffisait pas pour être embauché j'ai aussi fait une
+			formation de spécialisation de développeur java fullstack, par
+			ailleur je cherche une alternance pour 2023 dans le but d'obtenir un
+			RNCP de niveau 6 en développeur JAVA.</div>
+		<h3> Ce site n'est pas vraiment digne d'un développeur</h3>
+		<div class="accordion" id="accordionExample">
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingOne">
+					<button class="accordion-button" type="button"
+						data-bs-toggle="collapse" data-bs-target="#collapseOne"
+						aria-expanded="true" aria-controls="collapseOne"><h4>
+						Vous
+						avez raison</h4></button>
+				</h2>
+				<div id="collapseOne" class="accordion-collapse collapse show"
+					aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						J'avais commencé le développement d'un CMS php mais j'ai dût
+						mettre le projet en pause pour me consacrer pleinement à la
+						formation Java. <br> Maintenant qu'elle est terminée, en plus
+						de la recherche d'alternance, je développe un nouveau CMS depuis
+						le début en appliquant le nouveau savoir acquis <br> le code
+						source est disponible sur mon <a
+							href="https://github.com/VincentProuchet/FREE_Blogging">Github</a>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingTwo">
+					<button class="accordion-button collapsed" type="button"
+						data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+						aria-expanded="false" aria-controls="collapseTwo">
+						<h4>Tu utilise un workframe ?</h4>
+					</button>
+				</h2>
+				<div id="collapseTwo" class="accordion-collapse collapse"
+					aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						Oui ! <br> Le fat free framework. <br> Le seul
+						compatible php 5.6 ; la seule version de php que me sert le
+						service des pages personnelle de FREE.<br> Et Bootstrap5
+						parce que pourquoi pas ?
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingThree">
+					<button class="accordion-button collapsed" type="button"
+						data-bs-toggle="collapse" data-bs-target="#collapseThree"
+						aria-expanded="false" aria-controls="collapseThree">
+						<h4>C'est donc tout ce que tu peux nous montrer ?</h4>
+					</button>
+				</h2>
+				<div id="collapseThree" class="accordion-collapse collapse"
+					aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						Il y a quelques commandes que vous pouvez tentez sur l'api dans
+						son état actuel
+						<blockquote>
+							<a href="http://prouchetvincent.free.fr/serviceinfo">http://prouchetvincent.free.fr/serviceinfo</a>
+						</blockquote>
+						vous affichera un superbe phpinfo<br> ou
+						<blockquote>
+							<a href="http://prouchetvincent.free.fr/user/">
+								http://prouchetvincent.free.fr/user </a>
+						</blockquote>
+						vous répondra par un JSON. Sur cette derniére vous pouvez
+						tentez de faire des requêtes en POST, PUT, PATCH, DELETE. mais il
+						vous faudras au moins <a href="https://www.postman.com/">Postman</a>.<br>
+						Sachez que le POST est inutilisable dût à une mauvaise
+						configuration du serveur mais les devs de php auraient dût faire
+						mieux que de forcer un message d'erreur. Hélas il n'y a aucune
+						solution à ce problème sans accès au php.ini
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="heading4">
+					<button class="accordion-button collapsed" type="button"
+						data-bs-toggle="collapse" data-bs-target="#collapse4"
+						aria-expanded="false" aria-controls="collapse4">
+						<h4>Attend ! Tu est développeur JAVA et là tu fais du PHP ?</h4>
+					</button>
+				</h2>
+				<div id="collapse4" class="accordion-collapse collapse"
+					aria-labelledby="heading4" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						Je fais avec les outils qui me sont accessibles.<br> Si
+						j'avais les moyens de me payer un hébergement, je choisirais du
+						JAVA.<br> Il peux sembler contre-intuitif de changer de
+						langage de programmation, de mon point de vue ce sont des outils,
+						chaque outil a un usage définit par sa conception, mais j'ai
+						suffisement vu mon pére utiliser un tournevis plat pour déviser
+						des vis à tête cruciforme, pour savoir que la documentation
+						n'empêche pas l'expérimentation, même si je vous déconseille de
+						contredire le manuel de votre tronçoneuse. J'ai maintenant un
+						tiroir remplit de couteau à la pointe cassé.
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
