@@ -58,5 +58,12 @@ https://www.youtube.com/@n0nag0n80 <br />
 
 J'ai dû faire quelques modifications au base.php pour qu'il n'utilise pas les fonctions prohibées par l'hébergeur.<br />
 
+### Plugins 
+
+Les plugins ajoutés au fatfree sont :
+
+* Cortex disponible ici :https://github.com/ikkez/f3-cortex
+* Schema disponible ici :https://github.com/ikkez/f3-schema-builder/tree/master
+
 Merci a anvarazizov pour son aide indirecte sur les headers
 https://gist.github.com/anvarazizov/769f11871a9312e8cea8 

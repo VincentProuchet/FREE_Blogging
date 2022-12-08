@@ -5,6 +5,11 @@ class UserControler extends RestControler implements RestBase
 {
     public function get(\Base $sfw, array $args = [])
     {
+        $db=new DB\SQL(
+            'mysql:host=localhost;port=3307;dbname=freeblog',
+            'root',
+            '1111'
+            );
         $response = json_encode(UserDTO::makePublic(new User()));
         
         $this->sendJson($response);
