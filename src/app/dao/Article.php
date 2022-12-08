@@ -1,54 +1,103 @@
 <?php
+use DB\SQL\Schema;
+
 /**
  * représente les données d'un article de blog
- * @author Vincent
  *
+ * @author Vincent
+ *        
  */
-class Article
+class Article extends \DB\Cortex
 {
 
+    protected $db = 'DB', $table = 'articles', $primary = 'id', $fluid = true, $fieldConf = [
+        'creation' => [
+            'type' => \DB\SQL\Schema::DT_DATETIME,
+            'nullable' => false,
+            'default' => Schema::DF_CURRENT_TIMESTAMP,
+            'index' => false,
+            'unique' => false
+        ],
+        'author' => [
+            'belongs-to-one' => User::class
+        ],
+        'title' => [
+            'type' => \DB\SQL\Schema::DT_VARCHAR512,
+            'nullable' => true,
+            'default' => "",
+            'index' => false,
+            'unique' => false
+        ],
+        'text' => [
+            'type' => \DB\SQL\Schema::DT_TEXT,
+            'nullable' => true,
+            'index' => false,
+            'unique' => false
+        ],
+        'public' => [
+            'type' => \DB\SQL\Schema::DT_BOOLEAN,
+            'nullable' => false,
+            'default' => 0
+        ],
+        'reserved' => [
+            'type' => \DB\SQL\Schema::DT_BOOLEAN,
+            'nullable' => false,
+            'default' => 0
+        ]
+    ];
+
     /**
+     *
      * @var integer
      */
     private $id = 0;
 
     /**
      * date de création de l'article
+     *
      * @var DateTime
      */
     private $creation;
 
     /**
      * autheur de l'article
+     *
      * @var User
      */
     private $author;
 
     /**
      * titre de l'article
+     *
      * @var string
      */
     private $title = "";
 
     /**
      * corps de l'article
+     *
      * @var string
      */
     private $text = "";
+
     /**
      * status de publication de l'article
      * definit la visibilité aux visiteurs
+     *
      * @var boolean
      */
     private $public = false;
-    
+
     /**
-     * status de réservation de l'article 
+     * status de réservation de l'article
      * à un public définit
+     *
      * @var boolean
      */
     private $reserved = true;
+
     /**
+     *
      * @return number
      */
     public function getId()
@@ -57,6 +106,7 @@ class Article
     }
 
     /**
+     *
      * @return DateTime
      */
     public function getCreation()
@@ -65,6 +115,7 @@ class Article
     }
 
     /**
+     *
      * @return User
      */
     public function getAuthor()
@@ -73,6 +124,7 @@ class Article
     }
 
     /**
+     *
      * @return string
      */
     public function getTitle()
@@ -81,6 +133,7 @@ class Article
     }
 
     /**
+     *
      * @return string
      */
     public function getText()
@@ -89,6 +142,7 @@ class Article
     }
 
     /**
+     *
      * @return boolean
      */
     public function isPublic()
@@ -97,6 +151,7 @@ class Article
     }
 
     /**
+     *
      * @return boolean
      */
     public function isReserved()
@@ -105,6 +160,7 @@ class Article
     }
 
     /**
+     *
      * @param number $id
      */
     public function setId($id)
@@ -113,6 +169,7 @@ class Article
     }
 
     /**
+     *
      * @param DateTime $creation
      */
     public function setCreation($creation)
@@ -121,6 +178,7 @@ class Article
     }
 
     /**
+     *
      * @param User $author
      */
     public function setAuthor($author)
@@ -129,6 +187,7 @@ class Article
     }
 
     /**
+     *
      * @param string $title
      */
     public function setTitle($title)
@@ -137,6 +196,7 @@ class Article
     }
 
     /**
+     *
      * @param string $text
      */
     public function setText($text)
@@ -145,6 +205,7 @@ class Article
     }
 
     /**
+     *
      * @param boolean $public
      */
     public function setPublic($public)
@@ -153,13 +214,13 @@ class Article
     }
 
     /**
+     *
      * @param boolean $reserved
      */
     public function setReserved($reserved)
     {
         $this->reserved = $reserved;
     }
-
 }
 
 

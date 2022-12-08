@@ -3,6 +3,10 @@
 
 class UserControler extends RestControler implements RestBase
 {
+    public function __construct(){
+        User::setup();
+    }
+    
     public function get(\Base $sfw, array $args = [])
     {
         $response = json_encode(UserDTO::makePublic(new User()));

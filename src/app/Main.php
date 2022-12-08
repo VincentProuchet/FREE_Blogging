@@ -83,7 +83,9 @@ class Main extends Prefab
                 $this->cache->set('route-cache', $this->main->get('ROUTES'), 86400);
             }
         }
-           
+        // setting the database
+        $this->main->set("DB",new DB\SQL(
+            'mysql:host=127.0.0.1;port=3307;dbname=freeblog','root','1111'));
         
         // Execute application
         $this->main->run();

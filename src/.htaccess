@@ -1,4 +1,4 @@
-# vraiment pas facile de configurer sur .htaccesss
+# vraiment pas facile de configurer le .htaccesss
 # merci a http://les.pages.perso.chez.free.fr/le-htaccess-des-pages-perso.io 
 <IfDefine Free>
 php56 1

@@ -1,4 +1,5 @@
 ﻿<?php
+use DB\SQL\Schema;
 
 /**
  *
@@ -7,8 +8,62 @@
  */
 class User extends \DB\Cortex implements UserDetails
 {
-    protected
-        $db = '';
+
+    protected $db = 'DB', $table = 'users',$primary = 'id', $fluid = true, $fieldConf = [
+        
+        'name' => [
+            'type' => \DB\SQL\Schema::DT_VARCHAR128,
+            'nullable' => true,
+            'default' => "",
+            'index' => false,
+            'unique' => false
+        ],
+        'firstName' => [
+            'type' => \DB\SQL\Schema::DT_VARCHAR128,
+            'nullable' => true,
+            'default' => "",
+            'index' => false,
+            'unique' => false
+        ],
+        'dateOfBirth' => [
+            'type' => \DB\SQL\Schema::DT_DATETIME,
+            'nullable' => true,
+            'default' => Schema::DF_CURRENT_TIMESTAMP,
+            'index' => false,
+            'unique' => false
+        ],
+        'email' => [
+            'type' => \DB\SQL\Schema::DT_VARCHAR256,
+            'nullable' => false,
+            'default' => "default@free.fr",
+            'index' => false,
+            'unique' => true
+        ],
+        'userName' => [
+            'type' => \DB\SQL\Schema::DT_VARCHAR256,
+            'nullable' => true,
+            'default' => "",
+            'index' => false,
+            'unique' => false
+        ],
+        'login' => [
+            'type' => \DB\SQL\Schema::DT_VARCHAR256,
+            'nullable' => false,
+            'default' => "",
+            'index' => false,
+            'unique' => false
+        ],
+        'password' => [
+            'type' => \DB\SQL\Schema::DT_VARCHAR512,
+            'nullable' => false,
+            'default' => "",
+            'index' => false,
+            'unique' => false
+        ],
+        'articles' => [
+            'has-many'=>[Article::class,'author']
+        ],
+    ];
 
     /**
      *
@@ -62,14 +117,11 @@ class User extends \DB\Cortex implements UserDetails
      * @var string
      */
     private $password = null;
-
-    private static $dictionnary = array(
-        'id',
-        'name',
-        'firstname',
-        'dateofbirth',
-        'email'
-    );
+    /**
+     * 
+     * @var array
+     */
+    private $articles;
 
     public function __construct()
     {
@@ -91,42 +143,6 @@ class User extends \DB\Cortex implements UserDetails
         $new->setEmail($var->email);
         $new->setDateOfBirth($var->dateOfBirth);
         return $new;
-    }
-
-    /**
-     *
-     * @param array $var
-     *            initialise automatiquement les propriètées
-     *            de l'object en appellant chaque setter pour chaque
-     *            clé reconnue dans le tableau
-     *            les clés sont insenssibles à la casse
-     */
-    public function _set($var = [])
-    {
-        if (is_array($var)) {
-            $var = array_change_key_case($var, CASE_LOWER);
-            foreach ($var as $i) {
-                switch ($i) {
-                    case 'id':
-                        $this->setId($i);
-                        break;
-                    case 'name':
-                        $this->setName($i);
-                        break;
-                    case 'firstname':
-                        $this->setFirstName($i);
-                        break;
-                    case 'dateOfBirth':
-                        $this->setDateOfBirth($i);
-                        break;
-                    case 'email':
-                        $this->setEmail($i);
-                        break;
-                    default:
-                        '';
-                }
-            }
-        }
     }
 
     /**
