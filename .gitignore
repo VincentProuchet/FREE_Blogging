@@ -1,12 +1,11 @@
-/vendor/
+
 articles/
-defines/
+
 db/
 fffc/
 lib/
 gui/
-dao/
-controler/
+
 fonts/
 
 .project

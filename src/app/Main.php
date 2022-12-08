@@ -43,6 +43,8 @@ class Main extends Prefab
      * @var Cache
      */
     private $cache;
+    
+    private $db;
 
     /**
      * valeur dépendante de la variable ENVIRONNEMENT 
@@ -81,6 +83,8 @@ class Main extends Prefab
                 $this->cache->set('route-cache', $this->main->get('ROUTES'), 86400);
             }
         }
+           
+        
         // Execute application
         $this->main->run();
     }

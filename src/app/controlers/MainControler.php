@@ -7,41 +7,29 @@
  */
 class MainControler extends RestControler
 {
+    private $extension = ".htm";
+    private $home ='acceuil';
+    private $phpinfo = 'phpinfo';
 
+    /**
+     * affiche les information sur le service du site
+     * @param \Base $sfw
+     * @param array $args
+     */
     public function test(\Base $sfw, array $args = [])
     {
-        // header(RestControler::CONTENT_TYPE.RestControler::HTML);
-        $res = 'Module non disponible';
-        ?>
-<html>
-<body>
-	<p>test MainControler -> succées <?php $sfw->VERB;?></p>
-	<?php
-        if (! function_exists('apache_get_modules')) {
-            ?>
-          <p>apache_get_modules non disponible</p>
-     <?php
-        } else {
-            if (in_array('mod_rewrite', apache_get_modules())) {
-                $res = 'Module disponible';
-                echo "<p>" . apache_get_version() . "</p><p>mod_rewrite $res </p> ";
-            }
-        }
-        ?>
-	<p>hello world !</p>
-	<p>ceci est la page d'information du service</p>
-	<div>	
-	<?php
+             
+     echo \Template::instance()->render($this->phpinfo.$this->extension);
         phpinfo();
-        ?>
-    </div>
-</body>
-</html>
-<?php
     }
-
+/**
+ * envoie la page d'acceuil du site
+ * servira à l'envoie de la version compiler de l'application angular
+ * @param Base $sfw
+ * @param array $args
+ */
     public function home(Base $sfw, array $args = [])
     {        
-        echo \Template::instance()->render('acceuil.htm');
+        echo \Template::instance()->render($this->home.$this->extension);
     }
 }
