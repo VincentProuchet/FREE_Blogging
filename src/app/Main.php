@@ -51,14 +51,6 @@ class Main extends Prefab
     private $auth;
 
     /**
-     * valeur dépendante de la variable ENVIRONNEMENT
-     * du fichier de configuration
-     *
-     * @var boolean
-     */
-    private $devmode = false;
-
-    /**
      * constructor
      */
     protected function __construct()
@@ -126,12 +118,12 @@ class Main extends Prefab
      */
     private function setDebug()
     {
-        if ($this->main->PRODUCTION != 0) {
-            $this->devmode = false;
-            //$this->main->DEBUG = 0;
-        } else {
-            $this->devmode = false;
+        if ($this->main->EVIRONNEMENT == "DEV") {
+            $this->main->DEVMODE = 1; 
             $this->main->DEBUG = 3;
+        } else {
+            $this->main->DEVMODE = 0;
+            $this->main->DEBUG = 0;
         }
     }
 
@@ -160,9 +152,8 @@ class Main extends Prefab
         // qui force le recaching systématique
         // le but est d'évitez que vous ne vous retrouviez
         // avec des erreurs de routing juste parce que le cache n'aurait pas expiré
-        if (! empty($this->cache->exists('route-cache')) || ! $this->devMode) {
-
-            // /return;
+        if (!empty($this->cache->exists('route-cache'))&& $this->main->DEVMODE==0) {
+           // return;
         }
         if (! file_exists($this->configFiles . $this->main->routesFile)) {
             die($this->fileNotFound($this->main->routesFile, $this->configFiles));

@@ -9,10 +9,15 @@
 <body>
 	<div class="container">
 		<h1 class="center">hello world !</h1>
-		<p>ceci est la page d'information du service</p>
+		
+		<h2>ceci est la page d'information du service</h2>
 	
-	<pre>{{print_r(Base::instance())}}
-	</pre>
-	{{phpinfo()}}
-	
+		<div>
+			<h3>Données du fat free framework</h3>
+			<pre>
+				{{print_r(Base::instance())}}
+			</pre>
+		</div>
+		{{phpinfo()}}
+		</div>
 </body>
