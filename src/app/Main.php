@@ -36,19 +36,24 @@ class Main extends Prefab
      *
      * @var array
      */
-    private $routes;
+    private $routes = [];
 
     /**
      *
      * @var Cache
      */
     private $cache;
-    
+
     private $db;
 
+    private $db_mapper;
+
+    private $auth;
+
     /**
-     * valeur dépendante de la variable ENVIRONNEMENT 
-     * du fichier de configuration 
+     * valeur dépendante de la variable ENVIRONNEMENT
+     * du fichier de configuration
+     *
      * @var boolean
      */
     private $devmode = false;
@@ -63,7 +68,7 @@ class Main extends Prefab
         // vérifie l'existence du fichier
         if (! file_exists($this->configFiles . $this->configFileName)) {
             // ou tue l'application
-            die($this->fileNotFound($this->configFileName,$this->configFiles) );
+            die($this->fileNotFound($this->configFileName, $this->configFiles));
         }
         // chargement fichier configuration
         $this->main->config($this->configFiles . $this->configFileName);
@@ -71,22 +76,10 @@ class Main extends Prefab
         $this->setDebug();
         // execute le caching
         $this->caching();
-        // notez la présence du devmode
-        // qui force le recaching systématique
-        // le but est d'évitez que vous ne vous retrouviez
-        // avec des erreurs de routing juste parce que le cache n'aurait pas expiré
-        if (empty($this->routes) || $this->devMode) {
-            // function setRoute contient les routes et kles maps de votre Back-end
-            $this->setRoutes();
-            if (! $this->main->CACHE) {
-                // le caching n'est effectué que si il est configuré
-                $this->cache->set('route-cache', $this->main->get('ROUTES'), 86400);
-            }
-        }
+        // function setRoute contient les routes et kles maps de votre Back-end
+        $this->setRoutes();
         // setting the database
-        $this->main->set("DB",new DB\SQL(
-            'mysql:host=127.0.0.1;port=3307;dbname=freeblog','root','1111'));
-        
+        $this->setDatabase();
         // Execute application
         $this->main->run();
     }
@@ -111,17 +104,34 @@ class Main extends Prefab
     }
 
     /**
+     */
+    private function setDatabase()
+    {
+        $this->db = new DB\SQL('mysql:host=127.0.0.1;port=3307;dbname=freeblog;charset=utf8', 'root', '1111'
+            ,[
+                PDO::ATTR_STRINGIFY_FETCHES => false,
+                ]
+            );
+        
+        $this->main->mset([
+            "DB" => $this->db,
+           
+        ]);
+    }
+
+    /**
      * mettra le workframe en mode produciotn
      * si la variable ENVIRONNEMENT du fichier de configuration
      * a toutes autres valeur que : DEV
      */
     private function setDebug()
     {
-        if ($this->main->ENVIRONNEMENT !== 'DEV') {
+        if ($this->main->PRODUCTION != 0) {
             $this->devmode = false;
-            $this->main->set('DEBUG', 0);
+            //$this->main->DEBUG = 0;
         } else {
-            $this->devmode = true;
+            $this->devmode = false;
+            $this->main->DEBUG = 3;
         }
     }
 
@@ -132,9 +142,11 @@ class Main extends Prefab
     {
         if ($this->main->CACHE) {
             // route caching
-            $this->cache = new Cache();
-            // creation du cache des routes
-            $this->cache->exists('route-cache', $this->routes);
+            $this->cache = Cache::instance();
+            if (! $this->cache->exists('route-cache')) {
+                // creation du cache des routes
+                $this->cache->set('route-cache', $this->main->get('ROUTES'), 86400);
+            }
         }
     }
 
@@ -144,30 +156,64 @@ class Main extends Prefab
      */
     private function setRoutes()
     {
+        // notez la présence du devmode
+        // qui force le recaching systématique
+        // le but est d'évitez que vous ne vous retrouviez
+        // avec des erreurs de routing juste parce que le cache n'aurait pas expiré
+        if (! empty($this->cache->exists('route-cache')) || ! $this->devMode) {
+
+            // /return;
+        }
         if (! file_exists($this->configFiles . $this->main->routesFile)) {
-            die($this->fileNotFound($this->main->routesFile,$this->configFiles));
+            die($this->fileNotFound($this->main->routesFile, $this->configFiles));
         }
         if (! file_exists($this->configFiles . $this->main->mapsFile)) {
-            die($this->fileNotFound($this->main->mapsFile,$this->configFiles));
+            die($this->fileNotFound($this->main->mapsFile, $this->configFiles));
         }
         if (! file_exists($this->configFiles . $this->main->redirectFile)) {
-            die($this->fileNotFound($this->main->redirectFile,$this->configFiles));
+            die($this->fileNotFound($this->main->redirectFile, $this->configFiles));
         }
         // main route
         $this->main->config($this->configFiles . $this->main->routesFile);
         $this->main->config($this->configFiles . $this->main->mapsFile);
         $this->main->config($this->configFiles . $this->main->redirectFile);
+        // caching
+        if ($this->main->CACHE) {
+            // le caching n'est effectué que si il est configuré
+            $this->cache->set('route-cache', $this->main->get('ROUTES'), 86400);
+        }
     }
+
     /**
      * cette fonction met en forme un message d'erreur
-     *  utilisé lorsque qu'n fichier n'est pas trouvé
+     * utilisé lorsque qu'n fichier n'est pas trouvé
      * dans le dossier de configuration
+     *
      * @param string $file
      * @param string $repository
      * @return string
      */
-    private function fileNotFound($file,$repository){
-        return 'fichier '.$file.' manquant dans le dossier : '.$repository ;
+    private function fileNotFound($file, $repository)
+    {
+        return 'fichier ' . $file . ' manquant dans le dossier : ' . $repository;
+    }
+
+    /**
+     *
+     * @return mixed
+     */
+    public function getDb()
+    {
+        return $this->db;
+    }
+
+    /**
+     *
+     * @return mixed
+     */
+    public function getAuth()
+    {
+        return $this->auth;
     }
 }
 return Main::instance();

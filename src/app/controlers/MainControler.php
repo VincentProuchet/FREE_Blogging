@@ -20,7 +20,6 @@ class MainControler extends RestControler
     {
              
      echo \Template::instance()->render($this->phpinfo.$this->extension);
-        phpinfo();
     }
 /**
  * envoie la page d'acceuil du site
