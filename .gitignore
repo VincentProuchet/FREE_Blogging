@@ -1,18 +1,12 @@
 
 articles/
-
-db/
-fffc/
-lib/
-gui/
-
 fonts/
 
 .project
 .settings
-*.phar
 .buildpath
 
+*.phar
 *.bkp
 *.dtmp
 
@@ -24,3 +18,5 @@ fonts/
 /src/favicon-32x32.png
 /src/favicon.ico
 /src/site.webmanifest
+*/vendor/
+!*/**/fatfree-core/base.php

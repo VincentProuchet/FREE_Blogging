@@ -415,8 +415,7 @@ final class Base extends Prefab implements ArrayAccess {
 			$val=Cache::instance()->load($val);
 			break;
 		case 'ENCODING':
-		    
-			//ini_set('default_charset',$val);
+			ini_set('default_charset',$val);
 			if (extension_loaded('mbstring'))
 				mb_internal_encoding($val);
 			break;
@@ -2363,7 +2362,7 @@ final class Base extends Prefab implements ArrayAccess {
 	function __construct() {
 		// Managed directives
 	    $charset='UTF-8';
-	        //ini_set('default_charset',$charset);
+		//ini_set('default_charset',$charset);
 		if (extension_loaded('mbstring'))
 			mb_internal_encoding($charset);
 		//ini_set('display_errors',0);
@@ -3031,10 +3030,10 @@ class Preview extends View {
 	*	@param $val int|float
 	**/
 	function c($val) {
-		$locale=setlocale(LC_NUMERIC,0);
+		//$locale=setlocale(LC_NUMERIC,0);
 		//setlocale(LC_NUMERIC,'C');
 		$out=(string)(float)$val;
-		$locale=setlocale(LC_NUMERIC,$locale);
+		//$locale=setlocale(LC_NUMERIC,$locale);
 		return $out;
 	}
 

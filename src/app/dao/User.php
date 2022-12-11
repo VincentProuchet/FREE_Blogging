@@ -1,60 +1,66 @@
 ﻿<?php
+
+
+
+
 use DB\SQL\Schema;
+
+
 
 /**
  *
  * @author Vincent
  *        
  */
-class User extends \DB\Cortex implements UserDetails
+class User extends DAO implements UserDetails
 {
 
-    protected $db = 'DB', $table = 'users',$primary = 'id', $fluid = true, $fieldConf = [
+    protected $table = 'user' , $fieldConf = [
         
         'name' => [
-            'type' => \DB\SQL\Schema::DT_VARCHAR128,
+            'type' => Schema::DT_VARCHAR128,
             'nullable' => true,
             'default' => "",
             'index' => false,
             'unique' => false
         ],
         'firstName' => [
-            'type' => \DB\SQL\Schema::DT_VARCHAR128,
+            'type' =>  Schema::DT_VARCHAR128,
             'nullable' => true,
             'default' => "",
             'index' => false,
             'unique' => false
         ],
         'dateOfBirth' => [
-            'type' => \DB\SQL\Schema::DT_DATETIME,
+            'type' =>  Schema::DT_DATETIME,
             'nullable' => true,
             'default' => Schema::DF_CURRENT_TIMESTAMP,
             'index' => false,
             'unique' => false
         ],
         'email' => [
-            'type' => \DB\SQL\Schema::DT_VARCHAR256,
+            'type' =>  Schema::DT_VARCHAR256,
             'nullable' => false,
             'default' => "default@free.fr",
             'index' => false,
             'unique' => true
         ],
         'userName' => [
-            'type' => \DB\SQL\Schema::DT_VARCHAR256,
+            'type' =>  Schema::DT_VARCHAR256,
             'nullable' => true,
             'default' => "",
             'index' => false,
             'unique' => false
         ],
         'login' => [
-            'type' => \DB\SQL\Schema::DT_VARCHAR256,
+            'type' =>  Schema::DT_VARCHAR256,
             'nullable' => false,
             'default' => "",
             'index' => false,
             'unique' => false
         ],
         'password' => [
-            'type' => \DB\SQL\Schema::DT_VARCHAR512,
+            'type' =>  Schema::DT_VARCHAR512,
             'nullable' => false,
             'default' => "",
             'index' => false,
@@ -69,31 +75,31 @@ class User extends \DB\Cortex implements UserDetails
      *
      * @var integer
      */
-    private $id = 0;
+    public $id = 0;
 
     /**
      *
      * @var string
      */
-    private $name = "Itsumi";
+    public $name = "Itsumi";
 
     /**
      *
      * @var string
      */
-    private $firstName = "Mario";
+    public $firstName = "Mario";
 
     /**
      *
      * @var DateTime
      */
-    private $dateOfBirth = null;
+    public $dateOfBirth ;
 
     /**
      *
      * @var string
      */
-    private $email = "example@example.fr";
+    public $email = "example@example.fr";
 
     /**
      * dictionnaire pour l'initialisation
@@ -104,28 +110,30 @@ class User extends \DB\Cortex implements UserDetails
      *
      * @var string
      */
-    private $userName = "Mario";
+    public $userName = "Mario";
 
     /**
      *
      * @var string
      */
-    private $login = "Asheecret";
+    public $login = "Asheecret";
 
     /**
      *
      * @var string
      */
-    private $password = null;
+    public $password = "";
     /**
      * 
      * @var array
      */
-    private $articles;
+    public $articles;
 
     public function __construct()
     {
-        $this->setDateOfBirth("2004-10-02");
+        parent::__construct();
+        $this->setDateOfBirth(DateTime::createFromFormat("Y-m-d", "2000-10-02"));
+        
     }
 
     /**
@@ -179,11 +187,11 @@ class User extends \DB\Cortex implements UserDetails
      * date de naissance
      * à partir d'une date au format YYYY-mm-dd en numérique
      *
-     * @param string $var
+     * @param DateTime $var
      */
-    public function setDateOfBirth($var = "")
+    public function setDateOfBirth($var)
     {
-        $this->dateOfBirth = DateTime::createFromFormat("Y-m-d", $var);
+        $this->dateOfBirth = $var;
     }
 
     /**

@@ -1,4 +1,8 @@
 <?php
+namespace BLOG\app\tools;
+
+use Exception;
+
 if(!class_exists("Debug")){
 	/**
 	 * La classe Debug aide à la recherche et l'analyse

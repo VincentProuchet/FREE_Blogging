@@ -1,6 +1,12 @@
 <?php
 
-class ArticleControler extends \RestControler implements  \RestBase
+
+use BLOG\app\dao\Article;
+use BLOG\app\dao\User;
+use BLOG\app\dto\ArticleDTO;
+use Base;
+
+class ArticleControler extends RestControler implements RestBase
 {
     public function __construct(){
         User::setup();

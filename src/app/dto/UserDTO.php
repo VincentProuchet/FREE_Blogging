@@ -1,4 +1,6 @@
 <?php
+
+
 /**
  * Classe de transfert de données
  * pour les données de l'utilisateur connecté

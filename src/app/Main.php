@@ -1,5 +1,7 @@
 <?php
 
+
+
 /**
  * J'ai voulut organiser le code 
  * et pour moi organiser ça veux dire transformer en objet
@@ -22,7 +24,7 @@ class Main extends Prefab
      *
      * @var string
      */
-    private $configFiles = __DIR__ . '/../app/config/';
+    private $configFiles = __DIR__ . '\\config\\';
 
     /**
      * fat-free framework instance
@@ -64,14 +66,17 @@ class Main extends Prefab
         }
         // chargement fichier configuration
         $this->main->config($this->configFiles . $this->configFileName);
-        // controle l'état de l'environement
-        $this->setDebug();
         // execute le caching
         $this->caching();
         // function setRoute contient les routes et kles maps de votre Back-end
         $this->setRoutes();
         // setting the database
         $this->setDatabase();
+        // controle l'état de l'environement
+        $this->setDebug();
+//         echo '<pre>';
+//         print_r($this->main);
+//         echo '</pre>';
         // Execute application
         $this->main->run();
     }
@@ -101,7 +106,8 @@ class Main extends Prefab
     {
         $this->db = new DB\SQL('mysql:host=127.0.0.1;port=3307;dbname=freeblog;charset=utf8', 'root', '1111'
             ,[
-                PDO::ATTR_STRINGIFY_FETCHES => false,
+                //PDO::ATTR_EMULATE_PREPARES => false,
+                //PDO::ATTR_STRINGIFY_FETCHES => false,
                 ]
             );
         
@@ -118,13 +124,14 @@ class Main extends Prefab
      */
     private function setDebug()
     {
-        if ($this->main->EVIRONNEMENT == "DEV") {
-            $this->main->DEVMODE = 1; 
-            $this->main->DEBUG = 3;
-        } else {
-            $this->main->DEVMODE = 0;
-            $this->main->DEBUG = 0;
-        }
+//         if ($this->main->EVIRONNEMENT === "DEV") {
+//             $this->main->DEVMODE = 1; 
+//             $this->main->DEBUG = 3;
+//         } else {
+//             $this->main->DEVMODE = 0;
+//             $this->main->DEBUG = 0;
+//             $this->db->log(false);
+//         }
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
+
 use DB\SQL\Schema;
+
 
 /**
  * représente les données d'un article de blog
@@ -7,12 +9,12 @@ use DB\SQL\Schema;
  * @author Vincent
  *        
  */
-class Article extends \DB\Cortex
+class Article extends DAO
 {
 
-    protected $db = 'DB', $table = 'articles', $primary = 'id', $fluid = true, $fieldConf = [
+    protected $table = "article" , $fieldConf = [
         'creation' => [
-            'type' => \DB\SQL\Schema::DT_DATETIME,
+            'type' => Schema::DT_DATETIME,
             'nullable' => false,
             'default' => Schema::DF_CURRENT_TIMESTAMP,
             'index' => false,
@@ -22,25 +24,25 @@ class Article extends \DB\Cortex
             'belongs-to-one' => User::class
         ],
         'title' => [
-            'type' => \DB\SQL\Schema::DT_VARCHAR512,
+            'type' => Schema::DT_VARCHAR512,
             'nullable' => true,
             'default' => "",
             'index' => false,
             'unique' => false
         ],
         'text' => [
-            'type' => \DB\SQL\Schema::DT_TEXT,
+            'type' => Schema::DT_TEXT,
             'nullable' => true,
             'index' => false,
             'unique' => false
         ],
         'public' => [
-            'type' => \DB\SQL\Schema::DT_BOOLEAN,
+            'type' => Schema::DT_BOOLEAN,
             'nullable' => false,
             'default' => 0
         ],
         'reserved' => [
-            'type' => \DB\SQL\Schema::DT_BOOLEAN,
+            'type' => Schema::DT_BOOLEAN,
             'nullable' => false,
             'default' => 0
         ]
@@ -95,6 +97,11 @@ class Article extends \DB\Cortex
      * @var boolean
      */
     private $reserved = true;
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
      *

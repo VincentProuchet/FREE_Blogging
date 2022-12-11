@@ -1,4 +1,5 @@
 <?php
+namespace BLOG\app\tools;
 if(!class_exists('BlogTools')){
 	/**
 	 * Que ce soit bien clair

@@ -1,20 +1,31 @@
 {
 	"keywords" : [
-		"php;"
+		"php"
 	],
 	"autoload" : {
 		"psr-4" : {
-			"Prouchet Vincent\\PagePerso_Free_blogging_BE\\" : "src"
+			"BLOG\\" : ""
 		}
 	},
-	"name" : "Prouchet vincent/PagePerso_Free_blogging_BE",
 	"type" : "php",
 	"description" : "Back-end php compatible avec la version php disponible sur les pages persos de free",
 	"require" : {
-		"php" : ">=5.6",
-		"bcosca/fatfree" : "~3.8",
-		"f3-schema-builder":"dev-master"
-		
+		"php" : ">=5.6.34",
+		"bcosca/fatfree-core" : "~3.8",
+		"ikkez/f3-schema-builder" : "~2.2",
+		"ikkez/f3-cortex" : "~1.7"
 	},
-	"minimum-stability" : "beta"
+	"minimum-stability" : "stable",
+	"license" : "GPL-3.0+",
+	"repositories" : [{
+			"type" : "git",
+			"url" : "https://github.com/VincentProuchet/FREE_Blogging.git",
+			"name" : "FREE_Blogging"
+		}
+	],
+	"name" : "prouchetvincent/freeblog",
+	"config" : {
+		"vendor-dir" : "src\\vendor",
+		"notify-on-install" : false
+	}
 }
