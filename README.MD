@@ -1,10 +1,16 @@
 # FREE BLOGGING
 est un back-end en REST pour un blog.
 compatible avec l'hébergement des pages perso de l'opérateur français [FREE](https://www.free.fr)
+Ce projet est stoppé pour les raisons suivantes
+	- J'ai appris à mieux maitriser Composer
+	- J'ai découvert que je pouvais utiliser Composer dans une version compatible avec php 5.6
+	- j'ai pût modifier symphony pour qu'il fonctionne avec toutes les contraintes du fournisseur de service
+
+Je vous invite donc à passer sur le projet [SymFreeblog](https://github.com/VincentProuchet/symFreeBlog)
 
 
 
-### Contraintes
+## Contraintes
 * l'environement server n'est pas modifiable
 * php 5.6 
 <details>
@@ -40,7 +46,7 @@ Mais le esrvice de gestion des pages persos de FREE ne répond pas au demandes d
 
 
 
-### L'environement 
+## L'environement 
 - le service de FREE nous offre nombres de variables prédéfinies par le serveur, que je n'ai pas encore réussit à configurer dans mon serveur de test.
 - une configuration proche est disponible dans le fichier free_blogging.ini.
 - composer n'est pas utilisé, car il demande une version de php plus récente que celle disponible pour ce projet.
@@ -58,7 +64,7 @@ https://www.youtube.com/@n0nag0n80 <br />
 
 J'ai dû faire quelques modifications au base.php pour qu'il n'utilise pas les fonctions prohibées par l'hébergeur.<br />
 
-### Plugins 
+## Plugins 
 
 Les plugins ajoutés au fatfree sont :
 
